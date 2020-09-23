@@ -62,12 +62,14 @@ RUN mkdir -p /gateone/logs && \
     mkdir -p /gateone/users && \
     mkdir -p /etc/gateone/conf.d && \
     mkdir -p /etc/gateone/ssl && \
+    mkdir -p /opt/gateone && \
     cd /gateone && \
     git clone $GATEONE_REPO_URL && \
     cd GateOne && \
     python setup.py install && \
     cp /tmp/docker/update_and_run_gateone.py /usr/local/bin/update_and_run_gateone && \
-    cp /tmp/docker/60docker.conf /etc/gateone/conf.d/60docker.conf
+    cp /tmp/docker/60docker.conf /etc/gateone/conf.d/60docker.conf && \
+    cp /tmp/docker/ca_certs.pem /opt/gateone/ca_certs.pem
 
 # This ensures our configuration files/dirs are created:
 RUN /usr/local/bin/gateone --configure \
